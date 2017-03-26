@@ -1,12 +1,6 @@
 <html>
     <head>
     <link rel="title icon" type="image/x-icon" href="style/images/favicon.ico" />
-         <!-- Bootstrap -->
-        <link href = "style/css/bootstrap.min.css" rel = "stylesheet">
-        <title>Online Bus Ticketing</title>
-         
-         <!-- use this format if not using cdn links -->
-         <link href="{{ asset('components/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
         
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
