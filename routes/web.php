@@ -18,3 +18,7 @@ Route::get('/', function () {
 Route::get('/admin', function () {
     return view('login.admin');
 });
+
+Route::get('/bookreader', function () {
+    return view('bookreader');
+});
