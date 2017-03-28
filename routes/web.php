@@ -34,3 +34,7 @@ Route::get('/categories', function () {
 Route::get('/book', function () {
     return view('book');
 });
+
+Route::get('/searchbook', function () {
+    return view('searchbook');
+});
