@@ -24,10 +24,16 @@
     	<li ><a href="#"><span class="glyphicon glyphicon-user" style=".glyphicon{font-size: 75px;}"></span> USER</a></li>
     </ul>
 
+    <ul class="nav navbar-nav navbar-right">
+      <form class="navbar-form">
+      <button type="button" class="btn btn-info" >Categories</button>
+    </form>
+    </ul>
+
 
     <ul class="nav navbar-nav navbar-right">
     	<form class="navbar-form">
-    	<button type="submit" class="btn btn-info">Book shelf</button>
+    	<button type="button" class="btn btn-info" >Book shelf</button>
     </form>
     </ul>
     

@@ -22,3 +22,15 @@ Route::get('/admin', function () {
 Route::get('/bookreader', function () {
     return view('bookreader');
 });
+
+Route::get('/bookshelf', function () {
+    return view('bookshelf');
+});
+
+Route::get('/categories', function () {
+    return view('categories');
+});
+
+Route::get('/book', function () {
+    return view('book');
+});
