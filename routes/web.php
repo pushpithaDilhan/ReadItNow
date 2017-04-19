@@ -20,7 +20,8 @@ Route::get('/admin', function () {
 });
 
 Route::get('/bookreader', function () {
-    return view('bookreader');
+    //return view('bookreader');
+    return 'fbdskj';
 });
 
 Route::get('/bookshelf', function () {
@@ -31,10 +32,20 @@ Route::get('/categories', function () {
     return view('categories');
 });
 
-Route::get('/book', function () {
-    return view('book');
-});
+Route::get('/book/{id}', ['uses'=>'BookController@update']);
 
 Route::get('/searchbook', function () {
     return view('searchbook');
+});
+
+Route::post('/login',array('uses'=>'HomeController@doLogin'));
+    
+Route::get('/logout', function () {
+    return view('login.welcome');
+});
+
+Route::post('/signup',array('uses'=>'HomeController@doSignUp'));
+
+Route::get('/test', function () {
+    return hash('md5','piyal');
 });

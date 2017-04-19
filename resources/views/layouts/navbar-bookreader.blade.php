@@ -4,11 +4,11 @@
 
   	<!-- home button -->
   	<ul class="nav navbar-nav">
-  		<li class="glyphicon"><a href="/"><span style=".glyphicon{font-size: 110px;}" class="glyphicon glyphicon-home"></span></a></li>
+  		<li class="glyphicon"><a href="/bookreader"><span style=".glyphicon{font-size: 110px;}" class="glyphicon glyphicon-home"></span></a></li>
   	</ul>	
     
     <!-- search bar -->
-    <form class="navbar-form navbar-left">
+    <form class="navbar-form navbar-left" action="searchbook" method="GET">
       <div class="form-group">
         <input type="text" class="form-control" size="50" placeholder="Search books">
       </div>
@@ -16,24 +16,24 @@
     </form>
 
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-log-in" style=".glyphicon{font-size: 75px;}"></span> Logout</a></li>
+      <li><a href="/logout"><span class="glyphicon glyphicon-log-in" style=".glyphicon{font-size: 75px;}"></span> Logout</a></li>
     </ul>
 
 
     <ul class="nav navbar-nav navbar-right">
-    	<li ><a href="#"><span class="glyphicon glyphicon-user" style=".glyphicon{font-size: 75px;}"></span> USER</a></li>
+    	<li ><a href="/bookreader"><span class="glyphicon glyphicon-user" style=".glyphicon{font-size: 75px;}"></span> USER</a></li>
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
       <form class="navbar-form">
-      <button type="button" class="btn btn-info" >Categories</button>
+      <a href="/categories"><button type="button" class="btn btn-info" >Categories</button></a>
     </form>
     </ul>
 
 
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav navbar-right" >
     	<form class="navbar-form">
-    	<button type="button" class="btn btn-info" >Book shelf</button>
+    	<a href="/bookshelf"><button type="button" class="btn btn-info" >Book shelf</button></a>
     </form>
     </ul>
     

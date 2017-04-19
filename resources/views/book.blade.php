@@ -8,16 +8,18 @@
 	@include('layouts.navbar-bookreader')
 
 	<div style="margin-top:180px;">
-	<img src="{{URL::asset('/books/b001.jpg')}}" alt="profile Pic" style="display:inline; margin-left:80px;" width="256" height="384"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<img src="{{URL::asset('/books/'.$image.'.jpg')}}" alt="profile Pic" style="display:inline; margin-left:80px;" width="256" height="384"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	
-	<h2 style="display:inline-block; vertical-align:top;" ><b>COLLECTED ANCIENT GREEK NOVELS</b>
-		<br><br>
-		<p style="display:inline-block; vertical-align:top;font-size:20px"> Mystery / Action / Horror </p>
+	<h2 style="display:inline-block; vertical-align:top;" ><b>{{$title}}</b>
 		<br>
-		<p style="font-size:20px"><span class="glyphicon glyphicon-star" ></span> 5/10 </p>
+		<p style="display:inline-block; vertical-align:top;font-size:20px">{{$author}}</p>
+		<br>
+		<p style="display:inline-block; vertical-align:top;font-size:20px"> {{$category}} </p>
+		<br>
+		<p style="font-size:20px"><span class="glyphicon glyphicon-star" ></span> {{$orating}}/10 </p>
 		<br>
 		<p style="font-size:20px"> <b> Description </b></p>
-		<p style="font-size:18px">This book describes some ancient stories in greece.</p>
+		<p style="font-size:18px">{{$description}}</p>
 	</div>
 
 
