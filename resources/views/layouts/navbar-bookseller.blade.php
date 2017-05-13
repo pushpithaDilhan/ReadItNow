@@ -19,12 +19,11 @@
       <li><a href="/logout"><span class="glyphicon glyphicon-log-in" style=".glyphicon{font-size: 75px;}"></span> Logout</a></li>
     </ul>
 
-    @if(Session::get('role')=='r')
+
     <ul class="nav navbar-nav navbar-right">
     	<li ><a href="/bookreader"><span class="glyphicon glyphicon-user" style=".glyphicon{font-size: 75px;}"></span> USER</a></li>
     </ul>
 
-  
     <ul class="nav navbar-nav navbar-right">
       <form class="navbar-form">
       <a href="/categories"><button type="button" class="btn btn-info" >Categories</button></a>
@@ -37,7 +36,6 @@
     	<a href="/bookshelf"><button type="button" class="btn btn-info" >Book shelf</button></a>
     </form>
     </ul>
-    @endif
     
 	
 

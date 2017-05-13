@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use DB;
+use Session;
 
 class HomeController extends Controller
 {
@@ -15,18 +16,28 @@ class HomeController extends Controller
         
         $user = DB::table('login')->where('email',$email)->where('password',$password)->get();
         $user = json_decode($user,true);
+        if( $user==[]){
+           return redirect('/')->with('status', 'Username or Password is incorrect.');
+        }
+        
+        Session::put('role',$user[0]['role']);
+        Session::put('id',$user[0]['id']);
+        Session::put('fname',$user[0]['fname']);
+        Session::put('sname',$user[0]['sname']);
+        
         if($user[0]['role']=='r'){
-            return view('bookreader');
+            return redirect('/bookreader');
         }
         if($user[0]['role']=='s'){
             return view('bookseller');
         }
         if($user[0]['role']=='a'){
-            return view('admindashboard');
+            return view('admin.index');
         }
     }
     
     public function doSignUp(){
+        $id = DB::table('user')->max('id') + 1;
         $fname = Input::get('first_name');
         $sname = Input::get('second_name');
         $email = Input::get('email');
@@ -44,10 +55,11 @@ class HomeController extends Controller
         }
         
         if($psswd != $rpsswd){
-            return view('login.welcome');
+            return redirect('/')->with('password status', 'Passwords do not match.');        
         }
         //insert data to the user table
         DB::table('user')->insert([
+            'id' => $id,
             'fname' => $fname, 
             'sname' => $sname,
             'email' => $email,
@@ -60,6 +72,7 @@ class HomeController extends Controller
             
         //insert data to the login table
         DB::table('login')->insert([
+            'id' => $id,
             'fname' => $fname, 
             'sname' => $sname,
             'email' => $email,
@@ -67,6 +80,12 @@ class HomeController extends Controller
             'role' => 'r',
             ]);
             
+        return redirect('/')->with('reg status', 'You have been registered. Log in to continue.');        
+        
+    }
+    
+    public function logout(){
+        Session::flush();
         return view('login.welcome');
     }
         

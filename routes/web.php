@@ -1,4 +1,6 @@
 <?php
+use Illuminate\Support\Facades\Input;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,17 +18,19 @@ Route::get('/', function () {
 });
 
 Route::get('/admin', function () {
-    return view('login.admin');
+    return view('index');
+    //return "ok";
 });
 
-Route::get('/bookreader', function () {
-    //return view('bookreader');
-    return 'fbdskj';
-});
 
+
+Route::get('/bookreader', array('uses'=>'BookController@updateArrivals'));
+
+/*
 Route::get('/bookshelf', function () {
     return view('bookshelf');
 });
+*/
 
 Route::get('/categories', function () {
     return view('categories');
@@ -34,18 +38,50 @@ Route::get('/categories', function () {
 
 Route::get('/book/{id}', ['uses'=>'BookController@update']);
 
+Route::get('/buy/{id}', ['uses'=>'BookController@buy']);
+
+/**
 Route::get('/searchbook', function () {
     return view('searchbook');
 });
+**/
+
+
+
+Route::get('/searchbook',['uses'=>'BookController@search']);
+
 
 Route::post('/login',array('uses'=>'HomeController@doLogin'));
     
-Route::get('/logout', function () {
-    return view('login.welcome');
-});
+Route::get('/logout', array('uses'=>'HomeController@logout'));
 
 Route::post('/signup',array('uses'=>'HomeController@doSignUp'));
 
+Route::post('/sellerregister',array('uses'=>'SellerController@register'));
+
+Route::get('/completed/{id}', ['uses'=>'BookController@completed']);
+
+Route::get('/toread/{id}', ['uses'=>'BookController@toread']);
+
+Route::get('/bookshelf', array('uses'=>'BookController@updateCompleted'));
+
+Route::post('/comment',array('uses'=>'BookController@comment'));
+
+Route::post('/categories/submit',array('uses'=>'UserController@submitCategory'));
+
 Route::get('/test', function () {
-    return hash('md5','piyal');
+    $avg = DB::table('comments')
+        ->select(DB::raw('avg(rating) as rating'))
+        ->where('bookid',2)
+        ->get();
+        
+    return $avg[0]->rating;
+});
+
+Route::get('getsession',function(){
+    dd(Session::all());
+});
+
+Route::get('/signupbookseller', function () {
+    return view('signupbookseller');
 });

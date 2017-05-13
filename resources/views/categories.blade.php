@@ -6,8 +6,9 @@
 
 @section('content')
 	@include('layouts.navbar-bookreader')
-
-	<div class="container jumbotron" style="margin-top:200px;">
+<form class="navbar-form navbar-right right "  action="/categories/submit" method="POST">
+	<input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <div class="container jumbotron" style="margin-top:200px;">
 
         <div class="[ form-group ]" style="display:inline; padding:1em; margin-top:20px;">
             <input type="checkbox" name="scifi" id="scifi" autocomplete="off" />
@@ -167,8 +168,10 @@
 
         <br><br><br>
 
-        <button type="button" class="btn btn-primary" style="margin-left:85%;">Save Changes</button>
+        <button type="submit" class="btn btn-primary" style="margin-left:85%;">Save Changes</button>
 	
 		</div>
+        
+        </form>
 	
 	@endsection

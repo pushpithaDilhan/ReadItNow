@@ -1,0 +1,47 @@
+CREATE TABLE `book` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) NOT NULL,
+  `author` varchar(50) NOT NULL,
+  `category` varchar(24) NOT NULL,
+  `orating` float NOT NULL,
+  `description` varchar(500) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `comment` (
+  `bookid` int(11) NOT NULL,
+  `readerid` int(11) NOT NULL,
+  `rating` float NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `comment` varchar(500) NOT NULL,
+  KEY `bookid_idx` (`bookid`),
+  KEY `readerid_idx` (`readerid`),
+  CONSTRAINT `bookid` FOREIGN KEY (`bookid`) REFERENCES `book` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `readerid` FOREIGN KEY (`readerid`) REFERENCES `login` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `login` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fname` varchar(20) NOT NULL,
+  `sname` varchar(20) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(32) NOT NULL,
+  `role` varchar(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1004 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fname` varchar(50) NOT NULL,
+  `sname` varchar(20) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(32) NOT NULL,
+  `byear` int(11) NOT NULL,
+  `bmonth` int(11) NOT NULL,
+  `bdate` int(11) NOT NULL,
+  `gender` varchar(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1003 DEFAULT CHARSET=latin1;
+
+
+

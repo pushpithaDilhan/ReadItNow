@@ -20,6 +20,12 @@
 		<br>
 		<p style="font-size:20px"> <b> Description </b></p>
 		<p style="font-size:18px">{{$description}}</p>
+		@if(Session::get('role')=='r')
+		<a href="../completed/{{$image}}"><button type="submit" class="btn btn-success"  style="display:inline-block;">I have read</button></a>
+		<a href="../toread/{{$image}}"><button type="submit" class="btn btn-info"  style="display:inline-block;">I need to read</button></a>
+		<br><br>
+		<a href="../buy/{{$image}}"><button type="submit" class="btn btn-danger" style="display:inline-block;">Where to buy</button></a>
+		@endif	
 	</div>
 
 
@@ -27,18 +33,21 @@
 	
 <br><br>
 
+@if(Session::get('role')=='r')
 <h3 style="margin-left:50px;">Leave a review</h3>
-<form style="margin-left:50px; margin-right:50px;">
+<form style="margin-left:50px; margin-right:50px;" action="/comment" method="POST">
+  <input type="hidden" name="bookid" value="{{ $image }}">
+  <input type="hidden" name="_token" value="{{ csrf_token() }}">
   <div class="form-group">
     <label for="title">Title :</label>
-    <input type="text" class="form-control" id="title-comment">
+    <input type="text" name="title" class="form-control" id="title-comment">
   </div>
   <div class="form-group">
     <label for="comment">Review :</label>
-    <textarea class="form-control" rows="5" required></textarea>
+    <textarea class="form-control" name="comment" rows="5" required></textarea>
   </div>
 
-  <select class="form-group btn">
+  <select class="form-group btn" name="rating">
   	<option value="" disabled selected>Rate</option>
   	<option>10</option>
   	<option>9</option>
@@ -58,47 +67,28 @@
 	
 
 <br><br>
-
+@endif
 	<div id="movie-reviews">
 		<h3><span class="glyphicon glyphicon-star"></span>  Book Reviews</h3>
 		<br>
-
+		
+		@for ($i = 0; $i < count($comments); $i++)        
+				
 		<div class="jumbotron">
 			<div>
-			Reviewed by <span ><b>Ema Zan</b></span>
+			Reviewed by <span ><b>{{ $comments[$i]->fname }} {{ $comments[$i]->sname }}</b></span>
 			<span class="glyphicon glyphicon-star"></span>
-			<span class="review-rating">2 / 10</span>
+			<span class="review-rating">{{ $comments[$i]->rating }} / 10</span>
 			</div>
-			<h4>Unwatchable</h4>
+			<h4>{{ $comments[$i]->title }}</h4>
 			<article  style="height: 125px;">
-			<p>Aside the nonsense plot, the total lack of logic and the poor script
-			that I could expect from a full action-based movie, there is this
-			filming style where the camera flies, rebound, shakes, zoom in and out
-			(so close that I can see the skin cells of alice and suddenly from 50
-			feets in the air) that makes the action scenes impossible to follow,
-			and the actions scenes are like the 99% of the movie so the movie is
-			unwatchable.
+			<p>
+				{{ $comments[$i]->comment }}
+			</p>
 			</article>
 		</div>
 
-		<div class="jumbotron">
-			<div>
-			Reviewed by <span ><b>Ema Zan</b></span>
-			<span class="glyphicon glyphicon-star"></span>
-			<span class="review-rating">2 / 10</span>
-			</div>
-			<h4>Unwatchable</h4>
-			<article  style="height: 125px;">
-			<p>Aside the nonsense plot, the total lack of logic and the poor script
-			that I could expect from a full action-based movie, there is this
-			filming style where the camera flies, rebound, shakes, zoom in and out
-			(so close that I can see the skin cells of alice and suddenly from 50
-			feets in the air) that makes the action scenes impossible to follow,
-			and the actions scenes are like the 99% of the movie so the movie is
-			unwatchable.
-			</article>
-		</div>
-		<br><br>
+     	@endfor
 
 
 	</div>

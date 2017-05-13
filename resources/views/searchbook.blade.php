@@ -8,38 +8,22 @@
 	@include('layouts.navbar-bookreader')
 
 <div class="conatiner" style="margin-top:180px;">
-
-	<div class="jumbotron" >
-	<img src="{{URL::asset('/books/b001.jpg')}}" alt="profile Pic">
-	&nbsp;&nbsp;&nbsp;&nbsp;
-	<h2 style="display:inline-block; vertical-align:top;" ><b>COLLECTED ANCIENT GREEK NOVELS</b>
+	
+	@for ($i = 0; $i < count($searchbooks); $i++)           
+        
+		<div class="jumbotron" >
+			<a href="/book/{{$searchbooks[$i]->id}}">
+		<img src="{{URL::asset('/books/'.$searchbooks[$i]->id.'.jpg')}}" alt="profile Pic">
+		</a>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="/book/{{$searchbooks[$i]->id}}" style="text-decoration:none">
+		<h2 style="display:inline-block; vertical-align:top;" ><b>{{ $searchbooks[$i]->title }}</b>
+		</a>
 		<br>
-		<p style="display:inline-block; vertical-align:top;font-size:20px"> Mystery / Action / Horror </p>
-		<p style="font-size:20px"><span class="glyphicon glyphicon-star" ></span> 5/10 </p>
+		<p style="font-size:20px"><span class="glyphicon glyphicon-star" ></span> {{ $searchbooks[$i]->orating }}/10 </p>
 		</h2>
 	</div>
-
-	<div class="jumbotron" >
-	<img src="{{URL::asset('/books/b001.jpg')}}" alt="profile Pic">
-	&nbsp;&nbsp;&nbsp;&nbsp;
-	<h2 style="display:inline-block; vertical-align:top;" ><b>COLLECTED ANCIENT GREEK NOVELS</b>
-		<br>
-		<p style="display:inline-block; vertical-align:top;font-size:20px"> Mystery / Action / Horror </p>
-		<p style="font-size:20px"><span class="glyphicon glyphicon-star" ></span> 5/10 </p>
-	
-	</h2>
-	</div>
-
-	<div class="jumbotron" >
-	<img src="{{URL::asset('/books/b001.jpg')}}" alt="profile Pic">
-	&nbsp;&nbsp;&nbsp;&nbsp;
-	<h2 style="display:inline-block; vertical-align:top;" ><b>COLLECTED ANCIENT GREEK NOVELS</b>
-		<br>
-		<p style="display:inline-block; vertical-align:top;font-size:20px"> Mystery / Action / Horror </p>
-		<p style="font-size:20px"><span class="glyphicon glyphicon-star" ></span> 5/10 </p>
-	</div>
-	</h2>
-	
+     @endfor	
 
 </div>
 
