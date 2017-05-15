@@ -6,5 +6,5 @@
 
 @section('content')
 	@include('layouts.navbar-bookseller')
-    <h2>Book seller view</h2>
+    <
 @endsection

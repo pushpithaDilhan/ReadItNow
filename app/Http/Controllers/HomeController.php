@@ -29,10 +29,10 @@ class HomeController extends Controller
             return redirect('/bookreader');
         }
         if($user[0]['role']=='s'){
-            return view('bookseller');
+            return redirect('/bookseller');
         }
         if($user[0]['role']=='a'){
-            return view('admin.index');
+            return redirect('admin.index');
         }
     }
     
@@ -86,7 +86,8 @@ class HomeController extends Controller
     
     public function logout(){
         Session::flush();
-        return view('login.welcome');
+        return redirect('/');
+        //return view('login.welcome');
     }
         
     

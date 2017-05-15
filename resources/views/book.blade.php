@@ -26,6 +26,11 @@
 		<br><br>
 		<a href="../buy/{{$image}}"><button type="submit" class="btn btn-danger" style="display:inline-block;">Where to buy</button></a>
 		@endif	
+		
+		@if(Session::get('role')=='s')
+		<a href="../list/{{$image}}"><button type="submit" class="btn btn-success"  style="display:inline-block;">We have this</button></a>
+		<a href="../buy/{{$image}}"><button type="submit" class="btn btn-danger" style="display:inline-block;">Where to buy</button></a>
+		@endif
 	</div>
 
 

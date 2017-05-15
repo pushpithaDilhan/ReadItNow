@@ -21,19 +21,19 @@
 
 
     <ul class="nav navbar-nav navbar-right">
-    	<li ><a href="/bookreader"><span class="glyphicon glyphicon-user" style=".glyphicon{font-size: 75px;}"></span> USER</a></li>
+    	<li ><a href="/bookseller"><span class="glyphicon glyphicon-user" style=".glyphicon{font-size: 75px;}"></span> USER</a></li>
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
       <form class="navbar-form">
-      <a href="/categories"><button type="button" class="btn btn-info" >Categories</button></a>
+      <a href="/addbook"><button type="button" class="btn btn-info" >Add book</button></a>
     </form>
     </ul>
 
 
     <ul class="nav navbar-nav navbar-right" >
     	<form class="navbar-form">
-    	<a href="/bookshelf"><button type="button" class="btn btn-info" >Book shelf</button></a>
+    	<a href="/bookviews"><button type="button" class="btn btn-info" >Views</button></a>
     </form>
     </ul>
     

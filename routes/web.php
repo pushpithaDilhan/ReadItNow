@@ -61,6 +61,8 @@ Route::post('/sellerregister',array('uses'=>'SellerController@register'));
 
 Route::get('/completed/{id}', ['uses'=>'BookController@completed']);
 
+Route::get('/list/{id}', ['uses'=>'SellerController@listseller']);
+
 Route::get('/toread/{id}', ['uses'=>'BookController@toread']);
 
 Route::get('/bookshelf', array('uses'=>'BookController@updateCompleted'));
@@ -84,4 +86,23 @@ Route::get('getsession',function(){
 
 Route::get('/signupbookseller', function () {
     return view('signupbookseller');
+});
+
+Route::get('/testdnd', function () {
+    return view('dragdroptest');
+});
+
+Route::get('/addbook', function () {
+    return view('addbook');
+});
+
+Route::get('/bookseller', function () {
+    return view('bookseller');
+});
+
+
+Route::post('/addbook/request',array('uses'=>'SellerController@request'));
+
+Route::get('/bookviews', function () {
+    return view('bookviews');
 });
