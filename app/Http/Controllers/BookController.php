@@ -11,6 +11,10 @@ class BookController extends Controller
 {    
     
     public function update(Request $request, $id){
+        //analytics
+        DB::table('bookview')->where('bookid',$id)->increment('views');
+        DB::table('analytics')->where('refno',1)->increment('count');
+        
         $book = DB::table('book')->where('id',$id)->first();
         $categories = [
             '1'=>'Science Fiction',
@@ -135,7 +139,22 @@ class BookController extends Controller
         $avg = $avg[0]->rating;
         DB::table('book')
             ->where('id', $bid)
-            ->update(['orating' => $avg]);        
+            ->update(['orating' => $avg]);    
+            
+        // analytics on book reviews
+        $date = date("Y/m/d");
+        $rec = DB::table('reviewcount')
+        ->where('date', '=', $date)
+        ->first();
+        if(is_null($rec)){
+            DB::table('reviewcount')
+            ->insert([
+                'date' => $date,
+                'count'=> 1
+                ]);
+        }else{
+            DB::table('reviewcount')->where('date',$date)->increment('count');
+        }    
         
         return back();
     }

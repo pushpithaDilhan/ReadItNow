@@ -103,4 +103,17 @@ class SellerController extends Controller
         
     }
     
+    public function views(){       
+        
+        $views = DB::table('book')
+            ->join('bookview', 'book.id', '=', 'bookview.bookid')
+            ->select('id','title', 'author','orating','views')
+            ->orderBy('views','desc')
+            ->get();
+         
+        return view('bookviews',['views'=>$views]);
+        
+        
+    }
+    
 }

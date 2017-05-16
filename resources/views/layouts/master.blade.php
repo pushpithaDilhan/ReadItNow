@@ -33,7 +33,7 @@
 
 </head>
 
-<body>
+<body id="bgbody" background="{{URL::asset('/img/default.jpg')}}"  >
 	<nav class="navbar navbar-light navbar-fixed-top" style="min-height: 80px; background-color: #003399;" role="navigation" >
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->

@@ -14,6 +14,22 @@ use Illuminate\Support\Facades\Input;
 */
 
 Route::get('/', function () {
+    // analytics on page views
+    $date = date("Y/m/d");
+    $rec = DB::table('appview')
+    ->where('date', '=', $date)
+    ->first();
+    if(is_null($rec)){
+        DB::table('appview')
+        ->insert([
+            'date' => $date,
+            'count'=> 1
+            ]);
+    }else{
+        DB::table('appview')->where('date',$date)->increment('count');
+    }
+    
+    // view the home page
     return view('login.welcome');
 });
 
@@ -100,9 +116,27 @@ Route::get('/bookseller', function () {
     return view('bookseller');
 });
 
-
 Route::post('/addbook/request',array('uses'=>'SellerController@request'));
 
-Route::get('/bookviews', function () {
-    return view('bookviews');
+Route::get('/bookviews', ['uses'=>'SellerController@views']);
+
+Route::get('/index', function () {
+    return view('index');
+});
+
+Route::get('/testana', function () {
+    $date = date("Y/m/d");
+    $rec = DB::table('appview')
+    ->where('date', '=', $date)
+    ->first();
+    if(is_null($rec)){
+        DB::table('appview')
+        ->insert([
+            'date' => $date,
+            'count'=> 1
+            ]);
+    }else{
+        DB::table('appview')->where('date',$date)->increment('count');
+    }
+    
 });

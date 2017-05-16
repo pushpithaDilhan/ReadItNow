@@ -25,14 +25,19 @@ class HomeController extends Controller
         Session::put('fname',$user[0]['fname']);
         Session::put('sname',$user[0]['sname']);
         
+        //analytics
+        DB::table('analytics')->where('refno',2)->increment('count');
+        
         if($user[0]['role']=='r'){
+            DB::table('analytics')->where('refno',4)->increment('count');
             return redirect('/bookreader');
         }
         if($user[0]['role']=='s'){
-            return redirect('/bookseller');
+            DB::table('analytics')->where('refno',5)->increment('count');
+            return redirect('/bookviews');
         }
         if($user[0]['role']=='a'){
-            return redirect('admin.index');
+            return redirect('/index');
         }
     }
     
@@ -80,14 +85,33 @@ class HomeController extends Controller
             'role' => 'r',
             ]);
             
+        // analytics on registered readers
+        $date = date("Y/m/d");
+        $rec = DB::table('readercount')
+        ->where('date', '=', $date)
+        ->first();
+        if(is_null($rec)){
+            DB::table('readercount')
+            ->insert([
+                'date' => $date,
+                'count'=> 1
+                ]);
+        }else{
+            DB::table('readercount')->where('date',$date)->increment('count');
+        }
+            
         return redirect('/')->with('reg status', 'You have been registered. Log in to continue.');        
         
     }
     
     public function logout(){
         Session::flush();
+        
+        //analytics
+        DB::table('analytics')->where('refno',2)->decrement('count');
+        
         return redirect('/');
-        //return view('login.welcome');
+        
     }
         
     
