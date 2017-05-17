@@ -103,11 +103,11 @@ Route::get('/admin/bookrequests', ['uses'=>'AdminController@bookrequests']);
 
 Route::post('/admin/signup',array('uses'=>'AdminController@doSignUp'));
 
-//not working fix again
-Route::get('/admin/accept/{$id}', ['uses'=>'AdminController@acceptBook']);
 
-Route::get('/admin/reject/{$id}', ['uses'=>'AdminController@rejectBook']);
-//------------------------
+Route::get('/admin/accept/{id}', ['uses'=>'AdminController@acceptBook']);
+
+Route::get('/admin/reject/{id}', ['uses'=>'AdminController@rejectBook']);
+
 
 
 // testing routes

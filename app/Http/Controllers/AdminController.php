@@ -13,14 +13,48 @@ class AdminController extends Controller
         
     public function acceptBook(Request $request, $id){              
         // all the record to the book table and remove from request table
-        DB::table('analytics')->where('refno',3)->increment('count');
+        DB::table('analytics')->where('refno',3)->increment('count'); 
+                        
+        // take the relevant request       
+        $request = DB::table('request')->where('requestid',$id)->first();
         
-        return $id;
+        //download cover page
+        $coverlink = $request->coverlink;
+        $bookname = DB::table('book')->count()+1;
+        copy($coverlink, 'books/'.$bookname.'.jpg');
+        
+        //add to the book tabel
+        DB::table('book')
+            ->insert([
+                'id' => $bookname,
+                'title' => $request->bookname,
+                'author' => $request->author,
+                'category'=> $request->category,
+                'orating' => 0,
+                'description'=>$request->description
+                ]);
+                
+        // add seller to the buy table if availability is 1
+        if($request->availability==1){
+            DB::table('buy')
+            ->insert([
+                'bookid' => $bookname,
+                'sellerid' => $request->sellerid
+                ]);
+        }
+        
+        // delete the request
+        DB::table('request')->where('requestid', '=', $id)->delete();
+        // analytics
+        DB::table('bookview')->insert(['bookid' => $bookname,'views' => 0]);
+        
+        return back();
     }
     
-    public function rejectBook(){              
+    public function rejectBook(Request $request, $id){              
         // remove the record from request table
-        return "reject ";
+        DB::table('request')->where('requestid', '=', $id)->delete();
+        return back();
     }
     
     public function views(){ 

@@ -38,6 +38,7 @@ class BookController extends Controller
         $comments = DB::table('comments')
             ->join('user', 'user.id', '=', 'comments.userid')
             ->select('comments.*', 'user.fname', 'user.sname')
+            ->where('bookid',"=",$id)
             ->orderBy('commentid','desc')
             ->get();          
        
