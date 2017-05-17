@@ -13,6 +13,40 @@
 <link rel="stylesheet" href="{!!asset('external/css/styles.css')!!}">
 <link rel="stylesheet" href="{!!asset('external/js/lumino.glyphs.js')!!}">
 
+<script src="{{!!asset('canvasjs.min.js')!!}}"></script>
+
+<script type="text/javascript">
+	window.onload = function() {
+		var chart = new CanvasJS.Chart("chartContainer", {			
+			data: [{
+				type: "line",
+				dataPoints: [
+				  { x: 10, y: 45 },
+				  { x: 20, y: 14 },
+				  { x: 30, y: 20 },
+				  { x: 40, y: 60 },
+				  { x: 50, y: 50 },
+				  { x: 60, y: 80 },
+				  { x: 70, y: 40 },
+				  { x: 80, y: 60 },
+				  { x: 90, y: 10 },
+				  { x: 100, y: 50 },
+				  { x: 110, y: 40 },
+				  { x: 120, y: 14 },
+				  { x: 130, y: 70 },
+				  { x: 140, y: 40 },
+				  { x: 150, y: 90 },
+				]
+			}]
+		});
+		chart.render();
+	}
+	</script>
+<script src="../../canvasjs.min.js"></script>
+	
+
+
+
 </head>
 
 <body>
@@ -56,9 +90,9 @@
 		
 	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar" style="margin-top:50px;">		
 		<ul class="nav menu">
-			<li class="active"><a href="/admin"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
+			<li><a href="/admin"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
 			<li><a href="/admin/readers"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> Readers</a></li>
-			<li><a href="/admin/books"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> Books</a></li>
+			<li class="active"><a href="/admin/books"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> Books</a></li>
 			<li><a href="/admin/reviews"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> Reviews</a></li>
 			<li><a href="/admin/addadmin"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> Add Admin</a></li>
 			<li><a href="/admin/bookrequests"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> Book requests</a></li>								
@@ -74,8 +108,8 @@
 							<svg class="glyph stroked bag"><use xlink:href="#stroked-bag"></use></svg>
 						</div>
 						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">{{$appviews}}</div>
-							<div class="text-muted">App views</div>
+							<div class="large">{{ $allbooks }}</div>
+							<div class="text-muted">All books</div>
 						</div>
 					</div>
 				</div>
@@ -87,8 +121,8 @@
 							<svg class="glyph stroked empty-message"><use xlink:href="#stroked-empty-message"></use></svg>
 						</div>
 						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">{{$reviews}}</div>
-							<div class="text-muted">Reviews</div>
+							<div class="large">{{$newbooks}}</div>
+							<div class="text-muted">New books</div>
 						</div>
 					</div>
 				</div>
@@ -100,8 +134,8 @@
 							<svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg>
 						</div>
 						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">{{$newusers}}</div>
-							<div class="text-muted">New Users</div>
+							<div class="large">{{$overall}}</div>
+							<div class="text-muted">Overall views</div>
 						</div>
 					</div>
 				</div>
@@ -113,93 +147,32 @@
 							<svg class="glyph stroked app-window-with-content"><use xlink:href="#stroked-app-window-with-content"></use></svg>
 						</div>
 						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">{{$activeusers}}</div>
-							<div class="text-muted">Active Users</div>
+							<div class="large">{{$viewstoday}}</div>
+							<div class="text-muted">Views today</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div><!--/.row-->
 		
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="panel panel-default">
-					<div class="panel-heading">Site Traffic Overview</div>					
-							<table class="table table-hover" style="margin-top:0px;">        
-								<tr>
-								<th>No</th>
-								<th>Date</th>
-								<th>Views</th>
-								</tr>
-								
-								@foreach($graphdata as $data)
-								<tr>
-								<td>{{ $data->id }}</td>
-								<td>{{ $data->date }}</td>
-								<td>{{ $data->views }}</td></tr>
-								@endforeach								
-							</table>				
-				</div>
-			</div>
-		</div><!--/.row-->
-		
-		<div class="row">
-			<div class="col-xs-12 col-md-6 col-lg-3">
-				<div class="panel panel-blue panel-widget ">
-					<div class="row no-padding">
-						<div class="col-sm-3 col-lg-5 widget-left">
-							<svg class="glyph stroked bag"><use xlink:href="#stroked-bag"></use></svg>
-						</div>
-						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">{{$allbooks}}</div>
-							<div class="text-muted">All books</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-12 col-md-6 col-lg-3">
-				<div class="panel panel-orange panel-widget">
-					<div class="row no-padding">
-						<div class="col-sm-3 col-lg-5 widget-left">
-							<svg class="glyph stroked blank document"><use xlink:href="#stroked-blank-document"></use></svg>
-						</div>
-						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">{{$allreaders}}</div>
-							<div class="text-muted">All Readers</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-12 col-md-6 col-lg-3">
-				<div class="panel panel-teal panel-widget">
-					<div class="row no-padding">
-						<div class="col-sm-3 col-lg-5 widget-left">
-							<svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg>
-						</div>
-						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">{{$allsellers}}</div>
-							<div class="text-muted">Sellers</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-12 col-md-6 col-lg-3">
-				<div class="panel panel-red panel-widget">
-					<div class="row no-padding">
-						<div class="col-sm-3 col-lg-5 widget-left">
-							<svg class="glyph stroked clipboard with paper"><use xlink:href="#stroked-clipboard-with-paper"/></svg></use></svg>
-						</div>
-						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">{{$alladmins}}</div>
-							<div class="text-muted">All Admins</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!--/.row-->
-		
-		
-								
+		<table class="table table-hover">        
+            <tr>
+            <th>Book</th>
+            <th>Author</th>
+            <th>Ratings</th>
+            <th>Views</th>
+            </tr>
+            
+            @foreach($views as $view)
+            <tr>
+            <td><a href="/book/{{$view->id}}" style="text-decoration:none">{{ $view->title }}</a></td>
+            <td>{{ $view->author }}</td>
+            <td>{{ $view->orating }}</td>
+            <td>{{ $view->views }}</td>        
+            </tr>
+            @endforeach        
+        </table>
+				
 			
 </body>
 

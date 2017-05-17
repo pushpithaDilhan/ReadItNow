@@ -37,7 +37,7 @@ class HomeController extends Controller
             return redirect('/bookviews');
         }
         if($user[0]['role']=='a'){
-            return redirect('/index');
+            return redirect('/admin');
         }
     }
     
