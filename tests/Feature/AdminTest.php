@@ -6,18 +6,21 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use DB;
 
-class ExampleTest extends TestCase
+class AdminTest extends TestCase
 {
     /**
      * A basic test example.
      *
      * @return void
      */
-    public function testBasicTest()
+    public function testToread()
     {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
+        $toread = DB::table('admin')
+                ->where('userid','=',1003)
+                ->first();
+        $this->assertEquals($toread->bookid,1);
+        
     }
 }

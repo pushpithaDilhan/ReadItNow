@@ -45,6 +45,7 @@ Route::get('/buy/{id}', ['uses'=>'BookController@buy']);
 
 Route::get('/searchbook',['uses'=>'BookController@search']);
 
+Route::get('/admin/searchbook',['uses'=>'BookController@search']);
 
 Route::post('/login',array('uses'=>'HomeController@doLogin'));
     
@@ -128,10 +129,6 @@ Route::get('/test1', function () {
     
 });
 
-Route::get('/test2', function () {
-    return view('dragdroptest');
-});
-
 
 Route::get('/test3', function () {
     $avg = DB::table('comments')
@@ -189,6 +186,15 @@ Route::get('/test6', function () {
         
         ]);
 });
+
+Route::get('/test7',function(){
+    $user = DB::table('login')
+                ->where('email','=','seller@gmail.com')
+                ->where('password',hash('md5','seller'))
+                ->first();
+    return $user->id;
+});
+
 
 Route::get('/seed1', function () {
     $x = 'readercount';

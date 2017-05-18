@@ -13,40 +13,6 @@
 <link rel="stylesheet" href="{!!asset('external/css/styles.css')!!}">
 <link rel="stylesheet" href="{!!asset('external/js/lumino.glyphs.js')!!}">
 
-<script src="{{!!asset('canvasjs.min.js')!!}}"></script>
-
-<script type="text/javascript">
-	window.onload = function() {
-		var chart = new CanvasJS.Chart("chartContainer", {			
-			data: [{
-				type: "line",
-				dataPoints: [
-				  { x: 10, y: 45 },
-				  { x: 20, y: 14 },
-				  { x: 30, y: 20 },
-				  { x: 40, y: 60 },
-				  { x: 50, y: 50 },
-				  { x: 60, y: 80 },
-				  { x: 70, y: 40 },
-				  { x: 80, y: 60 },
-				  { x: 90, y: 10 },
-				  { x: 100, y: 50 },
-				  { x: 110, y: 40 },
-				  { x: 120, y: 14 },
-				  { x: 130, y: 70 },
-				  { x: 140, y: 40 },
-				  { x: 150, y: 90 },
-				]
-			}]
-		});
-		chart.render();
-	}
-	</script>
-<script src="../../canvasjs.min.js"></script>
-	
-
-
-
 </head>
 
 <body>
@@ -132,7 +98,7 @@
         <div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">Book readers Overview</div>					
+					<div class="panel-heading">Review Overview</div>					
 							<table class="table table-hover" style="margin-top:0px;">        
 								<tr>
 								<th>No</th>

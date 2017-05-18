@@ -83,8 +83,13 @@ class BookController extends Controller
     public function updateArrivals(){
         $uid = Session::get('id');
         //$book = DB::select('select bookid from completed where userid = ?', [$uid]);
+        $popularbooks = DB::table('bookview')            
+            ->select('bookid')
+            ->orderBy('views','desc')
+            ->take(10)
+            ->get();
         $arrivalbook = DB::select('select id from book order by id desc;');
-        return view('bookreader',['arrivalbooks'=>$arrivalbook]);
+        return view('bookreader',['arrivalbooks'=>$arrivalbook,'popularbooks'=>$popularbooks]);
     }
     
      public function updateCompleted(){

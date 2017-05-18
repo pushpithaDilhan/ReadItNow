@@ -10,26 +10,14 @@
     <div style="margin-top:150px; display:inline-block;" class="jumbotron">
     <h2><b>Popular Books</b></h2>
     <br>
-    <img src="{{URL::asset('/books/b001.jpg')}}" alt="profile Pic">
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <img src="{{URL::asset('/books/b001.jpg')}}" alt="profile Pic">
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <img src="{{URL::asset('/books/b001.jpg')}}" alt="profile Pic">
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <img src="{{URL::asset('/books/b001.jpg')}}" alt="profile Pic">
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <img src="{{URL::asset('/books/b001.jpg')}}" alt="profile Pic">
-
-    <br><br><br><br><br>
-    <img src="{{URL::asset('/books/b001.jpg')}}" alt="profile Pic">
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <img src="{{URL::asset('/books/b001.jpg')}}" alt="profile Pic">
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <img src="{{URL::asset('/books/b001.jpg')}}" alt="profile Pic">
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <img src="{{URL::asset('/books/b001.jpg')}}" alt="profile Pic">
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <img src="{{URL::asset('/books/b001.jpg')}}" alt="profile Pic">
+    @for ($i = 0; $i < count($popularbooks); $i++)      
+       
+        <a href="/book/{{$popularbooks[$i]->bookid}}"><img src="{{URL::asset('/books/'.$popularbooks[$i]->bookid.'.jpg')}}" alt="profile Pic"></a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         @if (($i+1)%5 === 0)  
+            <br><br><br><br><br>
+         @endif
+     @endfor
 
 </div>
 
